@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanitas.calculator.app.services.IOperacionesService;
-
-import io.corp.calculator.TracerImpl;
+import com.sanitas.calculator.app.services.IUtilsService;
 
 /**
  * Controller que recibe las peticiones de 
@@ -24,6 +23,9 @@ public class CalculatorController {
 	
 	@Autowired
 	private IOperacionesService operacionesService;
+	
+	@Autowired
+	private IUtilsService utilsService;
 
 	@GetMapping("/sumar")
 	public ResponseEntity<String> sumando(@RequestParam(name = "operando1") Double operando1, 
@@ -31,8 +33,7 @@ public class CalculatorController {
 		
 		Double result = operacionesService.sumar(operando1, operando2);		
 		
-		TracerImpl tracer = new TracerImpl();
-		tracer.trace(result);
+		utilsService.trace(result.toString());
 		
 		return ResponseEntity.status(HttpStatus.OK).body(result.toString());
 	}
@@ -43,8 +44,7 @@ public class CalculatorController {
 		
 		Double result = operacionesService.restar(minuendo, sustraendo);
 		
-		TracerImpl tracer = new TracerImpl();
-		tracer.trace(result);
+		utilsService.trace(result.toString());
 		
 		return ResponseEntity.status(HttpStatus.OK).body(result.toString());
 	}
