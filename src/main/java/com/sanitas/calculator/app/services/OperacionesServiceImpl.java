@@ -7,14 +7,12 @@ public class OperacionesServiceImpl implements IOperacionesService {
 
 	@Override
 	public Double sumar(Double operador1, Double operador2) {
-		// TODO Auto-generated method stub
-		return null;
+		return operador1 + operador2;
 	}
 
 	@Override
 	public Double restar(Double minuendo, Double sustraendo) {
-		// TODO Auto-generated method stub
-		return null;
+		return minuendo - sustraendo;
 	}
 
 }
